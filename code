@@ -1,0 +1,109 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "gpuType": "T4",
+      "authorship_tag": "ABX9TyMxEIqodsTdE/xy/Y+bn8as",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    },
+    "accelerator": "GPU"
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/SATVIK202004/CodeAlpha_Language-Translation-Tool/blob/main/CodeAlpha_Language_Translation_Tool_TASK1.ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!pip install googletrans==4.0.0-rc1\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "qqLRw53xaFOJ",
+        "outputId": "fd5fc4df-e627-429a-ad7e-acf04459cd5f"
+      },
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Requirement already satisfied: googletrans==4.0.0-rc1 in /usr/local/lib/python3.10/dist-packages (4.0.0rc1)\n",
+            "Requirement already satisfied: httpx==0.13.3 in /usr/local/lib/python3.10/dist-packages (from googletrans==4.0.0-rc1) (0.13.3)\n",
+            "Requirement already satisfied: certifi in /usr/local/lib/python3.10/dist-packages (from httpx==0.13.3->googletrans==4.0.0-rc1) (2024.2.2)\n",
+            "Requirement already satisfied: hstspreload in /usr/local/lib/python3.10/dist-packages (from httpx==0.13.3->googletrans==4.0.0-rc1) (2024.5.1)\n",
+            "Requirement already satisfied: sniffio in /usr/local/lib/python3.10/dist-packages (from httpx==0.13.3->googletrans==4.0.0-rc1) (1.3.1)\n",
+            "Requirement already satisfied: chardet==3.* in /usr/local/lib/python3.10/dist-packages (from httpx==0.13.3->googletrans==4.0.0-rc1) (3.0.4)\n",
+            "Requirement already satisfied: idna==2.* in /usr/local/lib/python3.10/dist-packages (from httpx==0.13.3->googletrans==4.0.0-rc1) (2.10)\n",
+            "Requirement already satisfied: rfc3986<2,>=1.3 in /usr/local/lib/python3.10/dist-packages (from httpx==0.13.3->googletrans==4.0.0-rc1) (1.5.0)\n",
+            "Requirement already satisfied: httpcore==0.9.* in /usr/local/lib/python3.10/dist-packages (from httpx==0.13.3->googletrans==4.0.0-rc1) (0.9.1)\n",
+            "Requirement already satisfied: h11<0.10,>=0.8 in /usr/local/lib/python3.10/dist-packages (from httpcore==0.9.*->httpx==0.13.3->googletrans==4.0.0-rc1) (0.9.0)\n",
+            "Requirement already satisfied: h2==3.* in /usr/local/lib/python3.10/dist-packages (from httpcore==0.9.*->httpx==0.13.3->googletrans==4.0.0-rc1) (3.2.0)\n",
+            "Requirement already satisfied: hyperframe<6,>=5.2.0 in /usr/local/lib/python3.10/dist-packages (from h2==3.*->httpcore==0.9.*->httpx==0.13.3->googletrans==4.0.0-rc1) (5.2.0)\n",
+            "Requirement already satisfied: hpack<4,>=3.0 in /usr/local/lib/python3.10/dist-packages (from h2==3.*->httpcore==0.9.*->httpx==0.13.3->googletrans==4.0.0-rc1) (3.0.0)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from googletrans import Translator\n",
+        "def translate_to_languages(text, target_languages):\n",
+        "    translator = Translator()\n",
+        "    translations = {}\n",
+        "    for lang in target_languages:\n",
+        "        translated_text = translator.translate(text, dest=lang)\n",
+        "        translations[lang] = translated_text.text\n",
+        "    return translations\n",
+        "def main():\n",
+        "    text_to_translate = input(\"Enter the text you want to translate: \")\n",
+        "    target_languages = ['Arabic', 'French']\n",
+        "    translations = translate_to_languages(text_to_translate, target_languages)\n",
+        "    print(\"Translated text:\")\n",
+        "    for lang, translation in translations.items():\n",
+        "        print(f\"{lang.capitalize()}: {translation}\")\n",
+        "if __name__ == \"__main__\":\n",
+        "    main()\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "lbgHfkh7aFkN",
+        "outputId": "0edec2a7-e875-46cd-f3d9-8a971053cbe8"
+      },
+      "execution_count": 10,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter the text you want to translate: Egypt\n",
+            "Translated text:\n",
+            "Arabic: مصر\n",
+            "French: Egypte\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
